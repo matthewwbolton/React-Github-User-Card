@@ -12,6 +12,7 @@ export default class GithubPage extends Component {
         this.state = {
             user: [],
             userHandle: '',
+            followers: []
         }
     }
 
@@ -51,21 +52,21 @@ export default class GithubPage extends Component {
 
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevState.user !== this.state.user){
-    //         console.log(`new user in state`);
-    //         axios
-    //             .get(`https://api.github.com/users/${this.state.user.login}/followers}`)
-    //             .then(res => {
-    //                 console.log(res.data);
-    //                 this.setState){
-    //                     followers: res.data
-    //                 }
-    //             })
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.user !== this.state.user){
+            console.log(`new user in state`);
+            axios
+                .get(`https://api.github.com/users/${this.state.user.login}/followers`)
+                .then(res => {
+                    console.log(res.data);
+                    this.setState({
+                        followers: res.data
+                    })})
+                .catch(err => console.log(err.message));
+        }
 
-   
+    }
+    
 
 
    
@@ -76,7 +77,7 @@ export default class GithubPage extends Component {
             <div>
                 <GithubSearchForm  fetchUser={this.fetchUser} handleChanges={this.handleChanges}/>
                 <GithubUserCard user={this.state.user}/>
-                <GithubFollowersCard user={this.state.user}/>
+                <GithubFollowersCard followers={this.state.followers}/>
               
             </div>
         

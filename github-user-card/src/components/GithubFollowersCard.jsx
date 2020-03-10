@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Axios from 'axios';
 import {
     Card, CardBody, CardLink,
     CardTitle
@@ -16,37 +15,38 @@ import {
   `;
 
   const NewCard = styled(Card)`
-    width: 20%
+    width: 20%;
+    margin: 1%;
   `;
 
 export default class GithubFollowersCard extends Component {
     
-    constructor() {
-        super();
-        this.state = {
-            followers: [] 
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //         followers: [] 
             
-        }
-    }
+    //     }
+    // }
 
-    componentDidMount(){
-        console.log(`the followers component did mount`, this.props.user)
-        Axios
-            .get(`https://api.github.com/users/${this.props.user.login}/followers`)
-            .then(res => {
-                console.log(res.data, this.props.user);
-                this.setState({
-                    followers: res.data
-                })
-            })
-            .catch(err => console.log(err.message));
-    }
+    // componentDidMount(){
+    //     console.log(`the followers component did mount`, this.props.user)
+    //     // Axios
+    //     //     .get(`https://api.github.com/users/${this.props.user.login}/followers`)
+    //     //     .then(res => {
+    //     //         console.log(res.data, this.props.user);
+    //     //         this.setState({
+    //     //             followers: res.data
+    //     //         })
+    //     //     })
+    //     //     .catch(err => console.log(err.message));
+    // }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.followers !== this.state.followers){
-            console.log('component did update');
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.followers !== this.state.followers){
+    //         console.log('component did update');
+    //     }
+    // }
 
    
     
@@ -56,7 +56,7 @@ export default class GithubFollowersCard extends Component {
         console.log(this.props.user);
         return (
             <NewDiv>
-                {this.state.followers.map(follower => (
+                {this.props.followers.map(follower => (
               <NewCard key={follower.id}>
                 <CardBody>
                   <CardTitle>Github Handle: {follower.login}</CardTitle>
