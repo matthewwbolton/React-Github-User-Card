@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import GithubCard from './GithubCard';
+import GithubUserCard from './GithubUserCard';
 import axios from 'axios';
+import GithubFollowersCard from './GithubFollowersCard';
 
 
 export default class GithubPage extends Component {
@@ -25,6 +26,8 @@ export default class GithubPage extends Component {
             .catch(err => console.log(err.message));
     }
 
+   
+
 
    
    
@@ -32,7 +35,8 @@ export default class GithubPage extends Component {
         return (
             <div>
              
-                <GithubCard user={this.state.user}/>
+                <GithubUserCard user={this.state.user}/>
+                <GithubFollowersCard user={this.state.user}/>
               
             </div>
         
