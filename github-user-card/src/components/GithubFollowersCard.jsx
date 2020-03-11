@@ -15,7 +15,7 @@ import {
   `;
 
   const NewCard = styled(Card)`
-    width: 20%;
+    width: 23%;
     margin: 1%;
   `;
 
@@ -63,7 +63,7 @@ export default class GithubFollowersCard extends Component {
                 </CardBody>
                 <img width="100%" src={follower.avatar_url} alt={follower.login} />
                 <CardBody>
-                  <CardLink href={follower.url}>Profile Link</CardLink>
+                  <CardLink href={follower.url}>Github Profile Link</CardLink>
                 </CardBody>
               </NewCard>
               ))}
