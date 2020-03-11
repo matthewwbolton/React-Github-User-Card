@@ -3,6 +3,8 @@ import GithubUserCard from './GithubUserCard';
 import axios from 'axios';
 import GithubFollowersCard from './GithubFollowersCard';
 import GithubSearchForm from './GitHubSearchForm';
+import GithubContributionGraph from './GithubContributionGraph';
+
 
 
 export default class GithubPage extends Component {
@@ -12,7 +14,8 @@ export default class GithubPage extends Component {
         this.state = {
             user: [],
             userHandle: '',
-            followers: []
+            followers: [],
+            graph: []
         }
     }
 
@@ -66,6 +69,20 @@ export default class GithubPage extends Component {
         }
 
     }
+
+    // componentDidUpdate(prevProps, prevState){
+    //     if (prevState.user !== this.state.user){
+    //         axios
+    //             .get(`https://api.github.com/users/${this.state.user.login}/contributions`)
+    //             .then(res => {
+    //                 console.log(`this is the log for contribution graph`, res);
+    //                 this.setState({
+    //                     graph: res.data
+    //                 })
+    //             })
+    //             .catch(err => console.log(err.message));
+    //     }
+    // }
     
 
 
@@ -77,7 +94,10 @@ export default class GithubPage extends Component {
             <div>
                 <GithubSearchForm  fetchUser={this.fetchUser} handleChanges={this.handleChanges}/>
                 <GithubUserCard user={this.state.user}/>
+                <GithubContributionGraph user={this.state.user} />
                 <GithubFollowersCard followers={this.state.followers}/>
+               
+               
               
             </div>
         
